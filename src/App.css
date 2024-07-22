@@ -1,0 +1,37 @@
+.navbar-collapse{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.navbar{
+  background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
+}
+.btn{
+  background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
+}
+.signup{ 
+  font-weight: 700;
+  color: rgb(82,19,190);
+}
+.form-label{
+  color: rgb(84,13,235);
+  font-weight: 500;
+}
+.signin{ 
+  font-weight: 700;
+  color: rgb(82,19,190);
+}
+.container{
+  border: 3px solid rgb(82,19,190);
+  width: 40vw;
+  padding: 20px;
+  border-radius: 15px;
+}
+.sidebar{
+  height: 100vh;
+}
+.sidebar-link{
+  color: blueviolet !important;
+  font-size: 18px;
+}
