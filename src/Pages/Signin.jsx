@@ -1,13 +1,17 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../Components/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { signInFailure, signInStart, signInSuccess } from "../Redux/Slice/employeeSlice";
 
-const Signin = ({ setToken }) => {
+const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const {token, loading} = useSelector((state)=>state.employee)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -17,7 +21,7 @@ const Signin = ({ setToken }) => {
         .post("http://localhost:5000/api/login-emp", payload)
         .then((res) => {
           toast.success(res.data.message);
-          setToken(res.data.token);
+          dispatch(signInSuccess(res.data.token))
           navigate("/dashboard");
         });
     } catch (error) {

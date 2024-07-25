@@ -3,12 +3,14 @@ import React, { useEffect, useState } from 'react';
 import {toast} from 'react-toastify';
 import Header from '../Components/Header';
 import Sidebar from '../Components/Sidebar';
+import { useSelector } from 'react-redux';
 
-const Dashboard = ({token}) => {
+const Dashboard = () => {
     const [resdata,setResData] = useState([])
     useEffect(()=>{
 fetchData()
     },[])
+const {loading,token} = useSelector((state)=>state.employee)
     const fetchData = async()=>{
         await axios.get('http://localhost:5000/api/get-emp',{
             //For header method
