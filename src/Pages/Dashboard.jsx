@@ -10,7 +10,7 @@ const Dashboard = () => {
     useEffect(()=>{
 fetchData()
     },[])
-const {loading,token} = useSelector((state)=>state.employee)
+const {currentUser} = useSelector((state)=>state.employee)
     const fetchData = async()=>{
         await axios.get('http://localhost:5000/api/get-emp',{
             //For header method
@@ -20,7 +20,7 @@ const {loading,token} = useSelector((state)=>state.employee)
             //For bearer method
             headers:{
                 'Content-Type':'application/json',//This line is optional
-                'Authorization':`Bearer ${token}`
+                'Authorization':`Bearer ${currentUser.token}`
             }
         })
         .then((res)=>{

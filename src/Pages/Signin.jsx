@@ -11,7 +11,7 @@ const Signin = () => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const {token, loading} = useSelector((state)=>state.employee)
+  const { loading, currentUser} = useSelector((state)=>state.employee)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +21,8 @@ const Signin = () => {
         .post("http://localhost:5000/api/login-emp", payload)
         .then((res) => {
           toast.success(res.data.message);
-          dispatch(signInSuccess(res.data.token))
+          localStorage.setItem('Token',res.data.userDetail.token)
+          dispatch(signInSuccess(res.data.userDetail))
           navigate("/dashboard");
         });
     } catch (error) {
@@ -65,7 +66,7 @@ const Signin = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <button type="submit" className="btn btn-primary">
+              <button type="submit" className="btn btn-primary button">
                 Sign In
               </button>
             </fieldset>
