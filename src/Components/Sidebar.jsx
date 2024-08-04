@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHome } from "react-icons/fa";
+import { FaHome, FaUserAlt } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { HiSpeakerphone } from "react-icons/hi";
 import { FaUsersGear } from "react-icons/fa6";
@@ -8,9 +8,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   return (
-    <div className="container-fluid sidebar">
-      <div className="row">
-        <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
+        <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto col-md-3 border border-right">
           <ul className="nav flex-column">
             <li className="nav-item">
               <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
@@ -25,13 +23,16 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
+              <Link to='/employees' className="nav-link d-flex align-items-center gap-2 sidebar-link">
                 <FaUsersGear />
                 Employees
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link d-flex align-items-center gap-2"></a>
+              <Link to='/profile' className="nav-link d-flex align-items-center gap-2 sidebar-link">
+                <FaUserAlt size={15}/>
+                Profile
+              </Link>
             </li>
             <li className="nav-item">
               <a className="nav-link d-flex align-items-center gap-2"></a>
@@ -42,9 +43,8 @@ const Sidebar = () => {
           </ul>
           <hr className="my-3" />
           <ul className="nav flex-column mb-auto">
-          <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
-              </Link>
+            <li className="nav-item">
+              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link"></Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
@@ -54,8 +54,6 @@ const Sidebar = () => {
             </li>
           </ul>
         </div>
-      </div>
-    </div>
   );
 };
 
