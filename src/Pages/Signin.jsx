@@ -1,43 +1,55 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Navbar from "../Components/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { signInFailure, signInStart, signInSuccess } from "../Redux/Slice/employeeSlice";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 const Signin = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { loading, currentUser} = useSelector((state)=>state.employee)
+  const { loading } = useSelector((state)=>state.employee)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = { email, password };
-    try {
-      await axios
-        .post("http://localhost:5000/api/login-emp", payload)
-        .then((res) => {
-          toast.success(res.data.message);
-          localStorage.setItem('Token',res.data.userDetail.token)
-          dispatch(signInSuccess(res.data.userDetail))
-          navigate("/dashboard");
-        });
-    } catch (error) {
-      toast.error(error.response.data.message);
+  const [formData,setFormData] = useState({
+    email:"",
+    password:""
+  })
+
+  const validationSchema = Yup.object().shape({
+    email:Yup.string().required("Email cannot be empty").matches(/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/,"Invalid Email Format" ),
+    password:Yup.string().required("Password cannot be empty").matches(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,"Password should range between 6 and 16 characters and should contain at least one number and one special character")
+  })
+
+  const formik = useFormik({    
+    initialValues:formData,
+    validationSchema:validationSchema,
+
+    onSubmit:async(values)=>{
+      try {
+        await axios
+          .post("http://localhost:5000/api/login-emp", values)
+          .then((res) => {
+            setFormData(res.data)
+            toast.success(res.data.message);
+            localStorage.setItem('Token',res.data.userDetail.token)
+            dispatch(signInSuccess(res.data.userDetail))
+            navigate("/dashboard");
+          });
+      } catch (error) {
+        toast.error(error.response.data.message);
+      }
     }
-    setEmail("");
-    setPassword("");
-  };
+  })
   return (
     <>
     <Navbar />
     <div className="container d-flex justify-content-center mt-5">
       <div className="row">
         <div className="col">
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={formik.handleSubmit}>
             <fieldset>
               <legend className="text-center signin">Sign In</legend>
               <div className="mb-3">
@@ -49,10 +61,11 @@ const Signin = () => {
                   id="email"
                   className="form-control"
                   placeholder="Enter Your Email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
                 />
               </div>
+              <p className="formik-error">{formik.errors.email}</p>
               <div className="mb-3">
                 <label htmlFor="password" className="form-label">
                   Password
@@ -62,10 +75,11 @@ const Signin = () => {
                   id="password"
                   className="form-control"
                   placeholder="Enter Your Password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  value={formik.values.password}
+                  onChange={formik.handleChange}
                 />
               </div>
+              <p className="formik-error">{formik.errors.password}</p>
               <button type="submit" className="btn btn-primary button">
                 Sign In
               </button>

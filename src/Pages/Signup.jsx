@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ErrorMessage, Formik, useFormik } from "formik";
+import { useFormik } from "formik";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
@@ -7,30 +7,39 @@ import { toast } from "react-toastify";
 import Navbar from "../Components/Navbar";
 
 const Signup = () => {
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
-
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const payload = { userName, email, password, role };
-    try {
-      await axios
-        .post("http://localhost:5000/api/register-emp", payload)
-        .then((res) => {
-          toast.success(res.data.message);
-          navigate("/signin");
-        });
-    } catch (error) {
-      toast.error(error.message);
+  const [formData,setFormData] = useState({
+    userName:"",
+    email:"",
+    password:"",
+    role:""
+  })
+
+  const validationSchema = Yup.object().shape({
+    userName:Yup.string().required("Username cannot be empty").matches(/^[a-zA-Z0-9_\.]+$/,"Usernames can only contain uppercase or lowercase letters(A-Z or a-z), dot(.), underscore(_)"),
+    email:Yup.string().required("Email cannot be empty").matches(/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/,"Invalid Email Format" ),
+    password:Yup.string().required("Password cannot be empty").matches(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,"Password should range between 6 and 16 characters and should contain at least one number and one special character")
+  })
+
+  const formik = useFormik({
+    initialValues:formData,
+    validationSchema:validationSchema,
+    
+    onSubmit:async(values)=>{
+      try {
+        await axios
+          .post("http://localhost:5000/api/register-emp", values)
+          .then((res) => {
+            setFormData(res.data)
+            toast.success(res.data.message);
+            navigate("/signin");
+          });
+      } catch (error) {
+        toast.error(error.message);
+      }
     }
-    setUserName("");
-    setEmail("");
-    setPassword("");
-  };
+  })
 
   return (
     <>
@@ -38,7 +47,7 @@ const Signup = () => {
       <div className="container d-flex flex-wrap justify-content-center mt-5">
         <div className="row">
           <div className="col">
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={formik.handleSubmit}>
               <fieldset>
                 <legend className="text-center signup">Sign Up</legend>
                 <div className="mb-3">
@@ -50,12 +59,11 @@ const Signup = () => {
                     id="userName"
                     className="form-control"
                     placeholder="Enter Your User Name"
-                    value={userName}
-                    onChange={(e) => {
-                      setUserName(e.target.value);
-                    }}
+                    value={formik.values.userName}
+                    onChange={formik.handleChange}
                   />
                 </div>
+                <p className="formik-error">{formik.errors.userName}</p>
                 <div className="mb-3">
                   <label htmlFor="email" className="form-label">
                     Email Id
@@ -65,10 +73,11 @@ const Signup = () => {
                     id="email"
                     className="form-control"
                     placeholder="Enter Your Email Address"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    value={formik.values.email}
+                    onChange={formik.handleChange}
                   />
                 </div>
+                <p className="formik-error">{formik.errors.email}</p>
                 <div className="mb-3">
                   <label htmlFor="password" className="form-label">
                     Password
@@ -78,11 +87,11 @@ const Signup = () => {
                     id="password"
                     className="form-control"
                     placeholder="Enter Your Password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={formik.values.password}
+                    onChange={formik.handleChange}
                   />
                 </div>
-
+                <p className="formik-error">{formik.errors.password}</p>
                 <div className="mb-3">
                   <label htmlFor="role" className="form-label">
                     Role
@@ -91,7 +100,8 @@ const Signup = () => {
                     name="role"
                     id="role"
                     className="form-control"
-                    onChange={(e) => setRole(e.target.value)}
+                    value={formik.values.role}
+                    onChange={formik.handleChange}
                   >
                     <option>Select</option>
                     <option value="Admin">Admin</option>
