@@ -7,7 +7,7 @@
 .navbar{
   background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
 }
-.btn{
+.button{
   background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
 }
 .signup{ 
@@ -34,4 +34,8 @@
 .sidebar-link{
   color: blueviolet !important;
   font-size: 18px;
+}
+.formik-error{
+  font-size: 18px;
+  color:red;
 }
