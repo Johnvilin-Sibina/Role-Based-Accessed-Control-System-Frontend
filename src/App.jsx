@@ -13,6 +13,10 @@ import ProtectedRoute from './Components/ProtectedRoute';
 import Profile from './Pages/Profile';
 import Employees from './Pages/Employees';
 import AdminRoute from './Components/AdminRoute';
+import AssignRole from './Pages/AssignRole';
+import CreateDepartment from './Pages/CreateDepartment';
+import Department from './Pages/Department';
+import EditDepartment from './Pages/EditDepartment';
 
 const App = () => {
   return (
@@ -28,6 +32,10 @@ const App = () => {
         </Route>
         <Route element={<AdminRoute />}>
         <Route path='/employees' element={<Employees />} />
+        <Route path='/assignrole/:id' element={<AssignRole />} />
+        <Route path='/createdepartment' element={<CreateDepartment />} />
+        <Route path='/getdepartments' element={<Department />} />
+        <Route path='/editdepartment/:id' element={<EditDepartment />} />
         </Route>
         <Route path='/profile' element={<Profile />} />
         <Route path='/forgotpw' element={<ForgotPassword />} />

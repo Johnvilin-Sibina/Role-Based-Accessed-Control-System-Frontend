@@ -1,0 +1,86 @@
+import axios from "axios";
+import { useFormik } from "formik";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import * as Yup from "yup";
+
+const CreateDepartment = () => {
+  const [formData, setFormData] = useState({
+    departmentName: "",
+    description: "",
+  });
+  const navigate = useNavigate()
+
+  const validationSchema = Yup.object().shape({
+    departmentName: Yup.string().required("Department cannot be empty"),
+    description: Yup.string().required("Description cannot be empty"),
+  });
+
+  const formik = useFormik({
+    initialValues: formData,
+    validationSchema:validationSchema,
+
+    onSubmit:async(values)=>{
+        try {
+            await axios.post("http://localhost:5000/api/department/create-department",values)
+            .then((res)=>{
+                setFormData(res.data)
+                toast.success(res.data.message)
+                navigate('/getdepartments')
+            })
+        } catch (error) {
+            console.log(error)
+            toast.error(error.response.data.message)
+        }
+    }
+  });
+  return (
+    <div className="container d-flex flex-wrap justify-content-center mt-5">
+      <div className="row">
+        <div className="col">
+          <form onSubmit={formik.handleSubmit}>
+            <fieldset>
+              <legend className="text-center">Create Department</legend>
+              <div className="mb-3">
+                <label htmlFor="departmentName" className="form-label">
+                  Department Name
+                </label>
+                <input
+                  type="text"
+                  id="departmentName"
+                  className="form-control"
+                  placeholder="Enter the Department Name"
+                  value={formik.values.departmentName}
+                  onChange={formik.handleChange}
+                />
+              </div>
+              <p className="formik-error">{formik.errors.departmentName}</p>
+              <div className="mb-3">
+                <label htmlFor="description" className="form-label">
+                  Description
+                </label>
+                <textarea
+                  rows="5"
+                  cols="30"
+                  name="description"
+                  id="description"
+                  className="form-control"
+                  placeholder="Enter the Department Description"
+                  value={formik.values.description}
+                  onChange={formik.handleChange}
+                ></textarea>
+              </div>
+              <p className="formik-error">{formik.errors.description}</p>
+              <div className="mb-3">
+                <button type="submit" className="btn btn-success">Create</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CreateDepartment;

@@ -17,7 +17,7 @@ const Signup = () => {
   })
 
   const validationSchema = Yup.object().shape({
-    userName:Yup.string().required("Username cannot be empty").matches(/^[a-zA-Z0-9_\.]+$/,"Usernames can only contain uppercase or lowercase letters(A-Z or a-z), dot(.), underscore(_)"),
+    userName:Yup.string().required("Username cannot be empty").matches(/^[a-zA-Z0-9_\.]+$/,"Usernames can only contain uppercase or lowercase letters(A-Z or a-z), numbers, dot(.), underscore(_)"),
     email:Yup.string().required("Email cannot be empty").matches(/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/,"Invalid Email Format" ),
     password:Yup.string().required("Password cannot be empty").matches(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,"Password should range between 6 and 16 characters and should contain at least one number and one special character")
   })

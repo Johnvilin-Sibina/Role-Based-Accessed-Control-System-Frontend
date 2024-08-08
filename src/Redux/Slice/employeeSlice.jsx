@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   currentUser: null,
   loading: false,
+  Id:null
 };
 
 const employeeSlice = createSlice({
@@ -19,10 +20,13 @@ const employeeSlice = createSlice({
     signInFailure: (state, action) => {
       state.loading = false;
     },
+    assignRole:(state,action)=>{
+      state.Id = action.payload
+    },
   },
 });
 
-export const { signInStart, signInSuccess, signInFailure } =
+export const { signInStart, signInSuccess, signInFailure, assignRole } =
   employeeSlice.actions;
 
 export default employeeSlice.reducer;

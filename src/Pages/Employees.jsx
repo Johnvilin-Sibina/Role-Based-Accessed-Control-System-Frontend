@@ -1,10 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { assignRole } from "../Redux/Slice/employeeSlice";
+
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
-  const [role,setRole] = useState('')
+  const {Id} = useSelector((state)=>state.employee)
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+  const [deleteEmployee,setDeleteEmployee] = useState([])
   //Function to fetch all the employees
   const fetchEmployees = async () => {
     try {
@@ -20,6 +27,27 @@ const Employees = () => {
     fetchEmployees();
   }, []);
 
+  const handleAssignRole = (id)=>{
+    dispatch(assignRole(id))
+    navigate(`/assignrole/${Id}`)
+  }
+
+ //Function to handle delete
+ const handleDelete = async(id)=>{
+  try {
+  await axios.delete(`http://localhost:5000/api/delete-employee/${id}`)
+  .then((res)=>{
+    toast.success(res.data.message)
+    setDeleteEmployee(res.data)
+  })
+  } catch (error) {
+    console.log(error)
+    toast.error(error.response.data.message)
+  }
+}
+useEffect(()=>{
+  fetchEmployees()
+},[deleteEmployee])
   return (
     <>
       <h1 className="text-center">Employees</h1>
@@ -49,12 +77,12 @@ const Employees = () => {
                     <td className="shadow">Not Yet Assigned</td>
                   )}
                   {employee.role ? (
-                    <td className="shadow"><button className="btn btn-outline-warning">Update Role</button></td>
+                    <td className="shadow"><button className="btn btn-outline-warning" onClick={()=>handleAssignRole(employee._id)}>Update Role</button></td>
                   ) : (
-                    <td className="shadow"><button className="btn btn-outline-warning">Assign Role</button></td>
+                    <td className="shadow"><button className="btn btn-outline-warning" onClick={()=>handleAssignRole(employee._id)}>Assign Role</button></td>
                   )}
                   <td className="shadow">
-                    <button className="btn btn-outline-danger">Delete</button>
+                    <button className="btn btn-outline-danger" onClick={()=>handleDelete(employee._id)}>Delete</button>
                   </td>
                 </tr>
               );

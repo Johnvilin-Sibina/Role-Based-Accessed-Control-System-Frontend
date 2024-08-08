@@ -1,4 +1,5 @@
 import React from "react";
+import { FiMenu } from "react-icons/fi";
 
 const Header = () => {
   return (
@@ -29,20 +30,18 @@ const Header = () => {
           </button>
         </li>
         <li className="nav-item text-nowrap">
-          <button
-            className="nav-link px-3 text-white"
-            type="button"
-            data-bs-toggle="offcanvas"
-            data-bs-target="#sidebarMenu"
-            aria-controls="sidebarMenu"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <svg className="bi">
-              <use xlinkHref="#list" />
-            </svg>
-          </button>
-        </li>
+            <button
+              className="nav-link px-3 text-white"
+              type="button"
+              data-bs-toggle="offcanvas"
+              data-bs-target="#sidebarMenu"
+              aria-controls="sidebarMenu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+             <FiMenu />
+            </button>
+          </li>
       </ul>
       <div id="navbarSearch" className="navbar-search w-100 collapse">
         <input
