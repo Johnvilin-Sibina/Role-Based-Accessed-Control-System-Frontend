@@ -13,8 +13,8 @@ const CreateDepartment = () => {
   const navigate = useNavigate()
 
   const validationSchema = Yup.object().shape({
-    departmentName: Yup.string().required("Department cannot be empty"),
-    description: Yup.string().required("Description cannot be empty"),
+    departmentName: Yup.string().required("Department cannot be empty").matches(/^[a-zA-Z][a-zA-Z ]*$/, "Only Alphabet and Space is Allowed"),
+    description: Yup.string().required("Description cannot be empty").matches(/^[a-zA-Z][a-zA-Z ]*$/, "Only Alphabet and Space is Allowed"),
   });
 
   const formik = useFormik({
