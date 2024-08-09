@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 const EditDepartment = () => {
-  //const [editDepartment, setEditDepartment] = useState(null);
+  
   const navigate = useNavigate();
   const {departmentId} = useSelector((state)=>state.department)
   const [editDepartment, setEditDepartment] = useState({

@@ -17,6 +17,9 @@ import AssignRole from './Pages/AssignRole';
 import CreateDepartment from './Pages/CreateDepartment';
 import Department from './Pages/Department';
 import EditDepartment from './Pages/EditDepartment';
+import CreateRole from './Pages/CreateRole';
+import Role from './Pages/Role';
+import EditRole from './Pages/EditRole';
 
 const App = () => {
   return (
@@ -36,6 +39,9 @@ const App = () => {
         <Route path='/createdepartment' element={<CreateDepartment />} />
         <Route path='/getdepartments' element={<Department />} />
         <Route path='/editdepartment/:id' element={<EditDepartment />} />
+        <Route path='/getroles' element={<Role />} />
+        <Route path="/createrole" element={<CreateRole />} />
+        <Route path='/editrole/:id' element={<EditRole />} />
         </Route>
         <Route path='/profile' element={<Profile />} />
         <Route path='/forgotpw' element={<ForgotPassword />} />

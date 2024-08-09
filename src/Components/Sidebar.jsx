@@ -3,6 +3,8 @@ import { FaHome, FaUserAlt } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
 import { HiSpeakerphone } from "react-icons/hi";
 import { FaUsersGear } from "react-icons/fa6";
+import { TbCircleLetterD } from "react-icons/tb";
+import { TbCircleLetterR } from "react-icons/tb";
 import "../App.css";
 import { Link } from "react-router-dom";
 
@@ -30,17 +32,17 @@ const Sidebar = () => {
         <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul className="nav flex-column">
             <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
+              <Link to='/' className="nav-link d-flex align-items-center gap-2 sidebar-link">
                 <FaHome />
                 Home
               </Link>
             </li>
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
                 <HiSpeakerphone />
                 Anouncements
               </Link>
-            </li>
+            </li> */}
             <li className="nav-item">
               <Link
                 to="/employees"
@@ -48,6 +50,24 @@ const Sidebar = () => {
               >
                 <FaUsersGear />
                 Employees
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/getdepartments"
+                className="nav-link d-flex align-items-center gap-2 sidebar-link"
+              >
+                <TbCircleLetterD size="23"/>
+                Departments
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/getroles"
+                className="nav-link d-flex align-items-center gap-2 sidebar-link"
+              >
+                <TbCircleLetterR size="23"/>
+                Roles
               </Link>
             </li>
             <li className="nav-item">

@@ -5,7 +5,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 const AdminRoute = () => {
     const {currentUser} = useSelector((state)=>state.employee)
     return (
-        currentUser && currentUser.role==="Admin" ? <Outlet /> : <Navigate to="/dashboard" />
+        currentUser && currentUser.isAdmin ? <Outlet /> : <Navigate to="/dashboard" />
     );
 };
 

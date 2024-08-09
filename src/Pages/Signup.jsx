@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
@@ -8,38 +8,68 @@ import Navbar from "../Components/Navbar";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const [roles, setRoles] = useState([]);
 
-  const [formData,setFormData] = useState({
-    userName:"",
-    email:"",
-    password:"",
-    role:""
-  })
+  const fetchRoles = async () => {
+    try {
+      await axios
+        .get("http://localhost:5000/api/role/get-roles")
+        .then((res) => {
+          setRoles(res.data.result);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    fetchRoles();
+  }, []);
+  const [formData, setFormData] = useState({
+    userName: "",
+    email: "",
+    password: "",
+    role: "",
+  });
 
   const validationSchema = Yup.object().shape({
-    userName:Yup.string().required("Username cannot be empty").matches(/^[a-zA-Z0-9_\.]+$/,"Usernames can only contain uppercase or lowercase letters(A-Z or a-z), numbers, dot(.), underscore(_)"),
-    email:Yup.string().required("Email cannot be empty").matches(/^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/,"Invalid Email Format" ),
-    password:Yup.string().required("Password cannot be empty").matches(/^[a-zA-Z0-9!@#$%^&*]{6,16}$/,"Password should range between 6 and 16 characters and should contain at least one number and one special character")
-  })
+    userName: Yup.string()
+      .required("Username cannot be empty")
+      .matches(
+        /^[a-zA-Z0-9_\.]+$/,
+        "Usernames can only contain uppercase or lowercase letters(A-Z or a-z), numbers, dot(.), underscore(_)"
+      ),
+    email: Yup.string()
+      .required("Email cannot be empty")
+      .matches(
+        /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/,
+        "Invalid Email Format"
+      ),
+    password: Yup.string()
+      .required("Password cannot be empty")
+      .matches(
+        /^[a-zA-Z0-9!@#$%^&*]{6,16}$/,
+        "Password should range between 6 and 16 characters and should contain at least one number and one special character"
+      ),
+  });
 
   const formik = useFormik({
-    initialValues:formData,
-    validationSchema:validationSchema,
-    
-    onSubmit:async(values)=>{
+    initialValues: formData,
+    validationSchema: validationSchema,
+
+    onSubmit: async (values) => {
       try {
         await axios
           .post("http://localhost:5000/api/register-emp", values)
           .then((res) => {
-            setFormData(res.data)
+            setFormData(res.data);
             toast.success(res.data.message);
             navigate("/signin");
           });
       } catch (error) {
         toast.error(error.message);
       }
-    }
-  })
+    },
+  });
 
   return (
     <>
@@ -104,14 +134,13 @@ const Signup = () => {
                     onChange={formik.handleChange}
                   >
                     <option>Select</option>
-                    <option value="Admin">Admin</option>
-                    <option value="Manager">Manager</option>
-                    <option value="Team Lead">Team Lead</option>
-                    <option value="Senior Developer">Senior Developer</option>
-                    <option value="Junior Developer">Junior Developer</option>
-                    <option value="Assistant Developer">
-                      Assistant Developer
-                    </option>
+                    {roles.map((ele) => {
+                      return (
+                        <option key={ele._id} value={ele.role}>
+                          {ele.role}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 <button type="submit" className="btn btn-primary button">

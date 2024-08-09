@@ -4,11 +4,12 @@ import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
 import departmentReducer from './Slice/departmentSlice'
-
+import roleReducer from './Slice/roleSlice'
 
 const rootReducer = combineReducers({
     employee:employeeReducer,
-    department:departmentReducer
+    department:departmentReducer,
+    role:roleReducer
 })
 
 const persistConfig = {

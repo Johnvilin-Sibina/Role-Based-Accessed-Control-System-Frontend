@@ -1,47 +1,68 @@
 import axios from "axios";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+const EditRole = () => {
+    const navigate = useNavigate();
+  const {roleId} = useSelector((state)=>state.role)
+  const [editRole, setEditRole] = useState({
+    role: "",
+    responsibilities: "",
+  });
+  const validationSchema = Yup.object().shape({
+    role: Yup.string().required("Role cannot be empty").matches(/^[a-zA-Z][a-zA-Z ]*$/, "Only Alphabet and Space is Allowed"),
+    responsibilities: Yup.string().required("Responsibilities cannot be empty").matches(/^[A-Za-z,\s]+$/, "Only Alphabet, Comma and Space is Allowed"),
+  });
 
-const CreateRole = () => {
-    const [formData, setFormData] = useState({
-        role: "",
-        responsibilities: "",
+
+  const fetchData = async () => {
+    try {
+      await axios.get(`http://localhost:5000/api/role/get-role-by-id/${roleId}`).then((res) => {
+        toast.success(res.data.message);
+        setEditRole(res.data.result);
       });
-      const navigate = useNavigate()
-    
-      const validationSchema = Yup.object().shape({
-        role: Yup.string().required("Role cannot be empty").matches(/^[a-zA-Z][a-zA-Z ]*$/, "Only Alphabet and Space is Allowed"),
-        responsibilities: Yup.string().required("Responsibilities cannot be empty").matches(/^[A-Za-z,\s]+$/, "Only Alphabet, Comma and Space is Allowed"),
-      });
-    
-      const formik = useFormik({
-        initialValues: formData,
-        validationSchema:validationSchema,
-    
-        onSubmit:async(values)=>{
-            try {
-                await axios.post("http://localhost:5000/api/role/create-role",values)
-                .then((res)=>{
-                    setFormData(res.data)
-                    toast.success(res.data.message)
-                    navigate('/getroles')
-                })
-            } catch (error) {
-                console.log(error)
-                toast.error(error.response.data.message)
-            }
-        }
-      })
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
+
+  useEffect(()=>{
+    fetchData()
+  },[])
+
+  useEffect(()=>{
+    formik.setValues(editRole)
+  },[editRole])
+
+  const formik = useFormik({
+    initialValues: editRole,
+    validationSchema: validationSchema,
+
+    onSubmit: async (values) => {
+      try {
+        await axios.put(`http://localhost:5000/api/role/edit-role/${roleId}`, values)
+        .then((res) => {
+          setEditRole(res.data.result);
+          toast.success(res.data.message);
+          navigate("/getroles");
+        });
+      } catch (error) {
+        console.log(error);
+        toast.error(error.response.data.message);
+      }
+    },
+  });
     return (
         <div className="container d-flex flex-wrap justify-content-center mt-5">
       <div className="row">
         <div className="col">
           <form onSubmit={formik.handleSubmit}>
             <fieldset>
-              <legend className="text-center">Create Role</legend>
+              <legend className="text-center">Update Role</legend>
               <div className="mb-3">
                 <label htmlFor="role" className="form-label">
                   Role
@@ -73,7 +94,7 @@ const CreateRole = () => {
               </div>
               <p className="formik-error">{formik.errors.responsibilities}</p>
               <div className="mb-3">
-                <button type="submit" className="btn btn-success">Create</button>
+                <button type="submit" className="btn btn-success">Update</button>
               </div>
             </fieldset>
           </form>
@@ -83,4 +104,4 @@ const CreateRole = () => {
     );
 };
 
-export default CreateRole;
+export default EditRole;
