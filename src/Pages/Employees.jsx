@@ -5,13 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { assignRole } from "../Redux/Slice/employeeSlice";
 
-
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
-  const {Id} = useSelector((state)=>state.employee)
+  const { Id } = useSelector((state) => state.employee);
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const [deleteEmployee,setDeleteEmployee] = useState([])
+  const navigate = useNavigate();
+  const [deleteEmployee, setDeleteEmployee] = useState([]);
   //Function to fetch all the employees
   const fetchEmployees = async () => {
     try {
@@ -27,27 +26,28 @@ const Employees = () => {
     fetchEmployees();
   }, []);
 
-  const handleAssignRole = (id)=>{
-    dispatch(assignRole(id))
-    navigate(`/assignrole/${Id}`)
-  }
+  const handleAssignRole = (id) => {
+    dispatch(assignRole(id));
+    navigate(`/assignrole/${Id}`);
+  };
 
- //Function to handle delete
- const handleDelete = async(id)=>{
-  try {
-  await axios.delete(`http://localhost:5000/api/delete-employee/${id}`)
-  .then((res)=>{
-    toast.success(res.data.message)
-    setDeleteEmployee(res.data)
-  })
-  } catch (error) {
-    console.log(error)
-    toast.error(error.response.data.message)
-  }
-}
-useEffect(()=>{
-  fetchEmployees()
-},[deleteEmployee])
+  //Function to handle delete
+  const handleDelete = async (id) => {
+    try {
+      await axios
+        .delete(`http://localhost:5000/api/delete-employee/${id}`)
+        .then((res) => {
+          toast.success(res.data.message);
+          setDeleteEmployee(res.data);
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
+  useEffect(() => {
+    fetchEmployees();
+  }, [deleteEmployee]);
   return (
     <>
       <h1 className="text-center">Employees</h1>
@@ -59,6 +59,7 @@ useEffect(()=>{
               <th className="shadow">Email</th>
               <th className="shadow">Date Of Joining</th>
               <th className="shadow">Role</th>
+              <th className="shadow">Department</th>
               <th colSpan={2} className="shadow">
                 Actions
               </th>
@@ -70,19 +71,37 @@ useEffect(()=>{
                 <tr key={employee._id} className="shadow">
                   <td className="shadow">{employee.userName}</td>
                   <td className="shadow">{employee.email}</td>
-                  <td className="shadow">{employee.dateOfJoining.slice(0,10)}</td>
+                  <td className="shadow">
+                    {employee.dateOfJoining.slice(0, 10)}
+                  </td>
+                  <td className="shadow">{employee.role ? employee.role.role : 'Not Yet Assigned'}</td>
+                  <td className="shadow">{employee.department ? employee.department.departmentName : 'Not Yet Assigned'}</td>
                   {employee.role ? (
-                    <td className="shadow">{employee.role}</td>
+                    <td className="shadow">
+                      <button
+                        className="btn btn-outline-warning"
+                        onClick={() => handleAssignRole(employee._id)}
+                      >
+                        Update Role
+                      </button>
+                    </td>
                   ) : (
-                    <td className="shadow">Not Yet Assigned</td>
-                  )}
-                  {employee.role ? (
-                    <td className="shadow"><button className="btn btn-outline-warning" onClick={()=>handleAssignRole(employee._id)}>Update Role</button></td>
-                  ) : (
-                    <td className="shadow"><button className="btn btn-outline-warning" onClick={()=>handleAssignRole(employee._id)}>Assign Role</button></td>
+                    <td className="shadow">
+                      <button
+                        className="btn btn-outline-warning"
+                        onClick={() => handleAssignRole(employee._id)}
+                      >
+                        Assign Role
+                      </button>
+                    </td>
                   )}
                   <td className="shadow">
-                    <button className="btn btn-outline-danger" onClick={()=>handleDelete(employee._id)}>Delete</button>
+                    <button
+                      className="btn btn-outline-danger"
+                      onClick={() => handleDelete(employee._id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               );
