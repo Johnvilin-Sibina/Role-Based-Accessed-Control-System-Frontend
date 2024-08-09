@@ -39,3 +39,9 @@
   font-size: 18px;
   color:red;
 }
+legend{
+  color: rgb(82,19,190);
+  font-weight:500;
+  font-size:xx-large;
+  font-family:Georgia, Times, 'Times New Roman', serif
+}

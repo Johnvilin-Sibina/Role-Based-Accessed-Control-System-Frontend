@@ -7,8 +7,10 @@ import { TbCircleLetterD } from "react-icons/tb";
 import { TbCircleLetterR } from "react-icons/tb";
 import "../App.css";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Sidebar = () => {
+  const {currentUser} = useSelector((state)=>state.employee)
   return (
     <div className="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
       <div

@@ -17,14 +17,8 @@ const AssignRole = () => {
     department: "",
   });
   const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .required("Email cannot be empty")
-      .matches(
-        /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/,
-        "Invalid Email Format"
-      ),
-    role: Yup.string().required("Role is Required"),
-    department: Yup.string().required("Department is required"),
+    role: Yup.string().required("Role is Required").matches(/^[a-zA-Z][a-zA-Z ]*$/, "Only Alphabet and Space is Allowed"),
+    department: Yup.string().required("Department is required").matches(/^[A-Za-z,\s]+$/, "Only Alphabet, Comma and Space is Allowed"),
   });
 
   useEffect(() => {
