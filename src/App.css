@@ -45,3 +45,46 @@ legend{
   font-size:xx-large;
   font-family:Georgia, Times, 'Times New Roman', serif
 }
+
+
+
+.home {
+  padding: 2rem;
+}
+
+.jumbotron {
+  color: rgb(114, 29, 192);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+
+.display-3 {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right, rgb(164, 115, 243), rgb(156, 23, 151)); 
+  border:none;
+}
+
+.btn-primary:hover {
+  background-image: linear-gradient(to right, rgb(111, 31, 168), rgb(98, 0, 163)); /* Darker violet on hover */
+}
+hr.my-4 {
+  border-top: 1px solid rgb(220, 220, 220);
+}
+
+@media (max-width: 768px) {
+  .display-3 {
+    font-size: 2.5rem;
+  }
+  .lead {
+    font-size: 1.1rem;
+  }
+}
