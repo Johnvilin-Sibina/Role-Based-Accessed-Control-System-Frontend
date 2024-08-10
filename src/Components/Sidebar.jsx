@@ -82,10 +82,22 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link d-flex align-items-center gap-2"></a>
+              <Link
+                to="/rolepromotionreport"
+                className="nav-link d-flex align-items-center gap-2 sidebar-link"
+              >
+                <FaUserAlt size={15} />
+                Promotion Report
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link d-flex align-items-center gap-2"></a>
+              <Link
+                to="/workperiodreport"
+                className="nav-link d-flex align-items-center gap-2 sidebar-link"
+              >
+                <FaUserAlt size={15} />
+                Work Period Report
+              </Link>
             </li>
           </ul>
           <hr className="my-3" />

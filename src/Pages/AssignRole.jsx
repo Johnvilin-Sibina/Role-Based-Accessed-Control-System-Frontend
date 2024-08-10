@@ -7,8 +7,9 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 
 const AssignRole = () => {
-  //const [employee, setEmployee] = useState(null);
   const { Id } = useSelector((state) => state.employee);
+  const [departments, setDepartments] = useState([]);
+  const [roles, setRoles] = useState([]);
   const navigate = useNavigate();
   const [assignRole, setAssignRole] = useState({
     userName: "",
@@ -17,13 +18,59 @@ const AssignRole = () => {
     department: "",
   });
   const validationSchema = Yup.object().shape({
-    role: Yup.string().required("Role is Required").matches(/^[a-zA-Z][a-zA-Z ]*$/, "Only Alphabet and Space is Allowed"),
-    department: Yup.string().required("Department is required").matches(/^[A-Za-z,\s]+$/, "Only Alphabet, Comma and Space is Allowed"),
+    role: Yup.string().required("Role is Required"),
+    department: Yup.string().required("Department is required"),
   });
 
   useEffect(() => {
     fetchData();
+    fetchDepartment();
+    fetchRoles();
   }, []);
+
+  const fetchData = async () => {
+    try {
+      await axios
+        .get(`http://localhost:5000/api/employee-assign-role/${Id}`)
+        .then((res) => {
+          setAssignRole({
+           ...res.data.result,
+       role: res.data.result.role ? res.data.result.role._id : "", // Check if role exists
+        department: res.data.result.department ? res.data.result.department._id : "", // Check if department exists
+          });
+          toast.success(res.data.message);
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const fetchDepartment = async () => {
+    try {
+      await axios
+        .get("http://localhost:5000/api/department/get-departments")
+        .then((res) => {
+          setDepartments(res.data.result);
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
+
+  const fetchRoles = async () => {
+    try {
+      await axios
+        .get("http://localhost:5000/api/role/get-roles")
+        .then((res) => {
+          setRoles(res.data.result);
+        });
+    } catch (error) {
+      console.log(error);
+      toast.error(error.response.data.message);
+    }
+  };
 
   const formik = useFormik({
     initialValues: assignRole,
@@ -49,19 +96,6 @@ const AssignRole = () => {
     formik.setValues(assignRole);
   }, [assignRole]);
 
-  const fetchData = async () => {
-    try {
-      await axios
-        .get(`http://localhost:5000/api/employee-assign-role/${Id}`)
-        .then((res) => {
-          setAssignRole(res.data.result);
-          toast.success(res.data.message);
-        });
-    } catch (error) {
-      console.log(error);
-      toast.error(error.response.data.message);
-    }
-  };
 
   return (
     assignRole && (
@@ -112,13 +146,14 @@ const AssignRole = () => {
                     onChange={formik.handleChange}
                     value={formik.values.role}
                   >
-                    <option value="Admin">Admin</option>
-                    <option value="HR Manager">HR Manager</option>
-                    <option value="Content Creator">Content Creator</option>
-                    <option value="Customer Service Representative">
-                      Customer Service Representative
-                    </option>
-                    <option value="Recuriter">Recuriter</option>
+                    <option>Select</option>
+                    {roles.map((ele) => {
+                      return (
+                        <option key={ele._id} value={ele.role}>
+                          {ele.role}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 <p className="formik-error">{formik.errors.role}</p>
@@ -133,10 +168,17 @@ const AssignRole = () => {
                     onChange={formik.handleChange}
                     value={formik.values.department}
                   >
-                    <option value="Sales">Sales</option>
-                    <option value="Human Resource">Human Resource</option>
-                    <option value="Marketing">Marketing</option>
-                    <option value="Customer Service">Customer Service</option>
+                    <option>Select</option>
+                    {departments.map((department) => {
+                      return (
+                        <option
+                          key={department._id}
+                          value={department.departmentName}
+                        >
+                          {department.departmentName}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 <p className="formik-error">{formik.errors.department}</p>
