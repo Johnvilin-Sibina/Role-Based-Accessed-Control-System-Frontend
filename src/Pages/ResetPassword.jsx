@@ -33,7 +33,7 @@ const ResetPassword = () => {
   return (
     <>
     <Navbar />
-    <div className="container d-flex flex-wrap justify-content-center mt-5">
+    <div className="container d-flex flex-wrap justify-content-center mt-5 box">
       <div className="row">
         <div className="col">
           <form onSubmit={handleSubmit}>

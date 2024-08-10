@@ -46,7 +46,7 @@ const Signin = () => {
   return (
     <>
     <Navbar />
-    <div className="container d-flex justify-content-center mt-5">
+    <div className="container d-flex justify-content-center mt-5 box">
       <div className="row">
         <div className="col">
           <form onSubmit={formik.handleSubmit}>
