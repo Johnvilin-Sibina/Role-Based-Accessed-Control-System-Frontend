@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import DashboardButton from "../Components/DashboardButton";
 
 const AssignRole = () => {
   const { Id } = useSelector((state) => state.employee);
@@ -99,6 +100,7 @@ const AssignRole = () => {
 
   return (
     assignRole && (
+      <>
       <div className="container d-flex justify-content-center mt-5 box">
         <div className="row">
           <div className="col">
@@ -190,6 +192,8 @@ const AssignRole = () => {
           </div>
         </div>
       </div>
+      <DashboardButton />
+      </>
     )
   );
 };

@@ -92,18 +92,18 @@ const App = () => {
           <Route path='/about' element={<About />} />
           <Route element={<ProtectedRoute />}>
             <Route path='/dashboard' element={<Dashboard />} />
-          </Route>
-          <Route element={<AdminRoute />}>
-            <Route path='/employees' element={<Employees />} />
-            <Route path='/assignrole/:id' element={<AssignRole />} />
-            <Route path='/createdepartment' element={<CreateDepartment />} />
+          <Route element={<AdminRoute />}>          
+            <Route path='/employees' element={<Employees />} />  
+            <Route path='/assignrole/:id' element={<AssignRole />} /> 
             <Route path='/getdepartments' element={<Department />} />
+            <Route path='/createdepartment' element={<CreateDepartment />} />
             <Route path='/editdepartment/:id' element={<EditDepartment />} />
-            <Route path='/getroles' element={<Role />} />
+            <Route path='/getroles' element={<Role />} />       
             <Route path="/createrole" element={<CreateRole />} />
             <Route path='/editrole/:id' element={<EditRole />} />
             <Route path='/rolepromotionreport' element={<RolePromotionReport />} />
             <Route path='/workperiodreport' element={<WorkPeriodReport />} />
+          </Route>
           </Route>
           <Route path='/profile' element={<Profile />} />
           <Route path='/forgotpw' element={<ForgotPassword />} />

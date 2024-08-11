@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import DashboardButton from "../Components/DashboardButton";
 const EditRole = () => {
     const navigate = useNavigate();
   const {roleId} = useSelector((state)=>state.role)
@@ -57,6 +58,7 @@ const EditRole = () => {
     },
   });
     return (
+        <>
         <div className="container d-flex flex-wrap justify-content-center mt-5 box">
       <div className="row">
         <div className="col">
@@ -101,6 +103,8 @@ const EditRole = () => {
         </div>
       </div>
     </div>
+    <DashboardButton />
+        </>
     );
 };
 

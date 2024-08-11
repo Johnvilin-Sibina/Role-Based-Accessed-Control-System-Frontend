@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import DashboardButton from "../Components/DashboardButton";
 
 const EditDepartment = () => {
   
@@ -63,6 +64,7 @@ const EditDepartment = () => {
   });
   return (
     editDepartment && (
+      <>
       <div className="container d-flex flex-wrap justify-content-center mt-5 box">
         <div className="row">
           <div className="col">
@@ -109,6 +111,8 @@ const EditDepartment = () => {
           </div>
         </div>
       </div>
+      <DashboardButton />
+      </>
     )
   );
 };

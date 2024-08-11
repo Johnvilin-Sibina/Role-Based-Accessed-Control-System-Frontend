@@ -20,7 +20,7 @@ const Home = () => {
               Access company resources, view reports, manage employee roles, and
               more.
             </p>
-            <a className="btn btn-primary btn-lg" href="/signup" role="button">
+            <a className="btn btn-primary btn-lg get-started-btn" href="/signup" role="button">
               Get Started
             </a>
           </div>

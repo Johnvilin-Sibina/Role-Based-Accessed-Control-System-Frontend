@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Navbar from "../Components/Navbar";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
+import DashboardButton from "../Components/DashboardButton";
 
 const Profile = () => {
   const { currentUser } = useSelector((state) => state.employee);
@@ -163,6 +164,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+      <DashboardButton />
     </>
   );
 };

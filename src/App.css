@@ -76,13 +76,13 @@ legend{
   font-weight: 300;
 }
 
-.btn-primary {
+.get-started-btn {
   background-image: linear-gradient(to right, rgb(164, 115, 243), rgb(156, 23, 151)); 
   border:none;
 }
 
-.btn-primary:hover {
-  background-image: linear-gradient(to right, rgb(111, 31, 168), rgb(98, 0, 163)); /* Darker violet on hover */
+.get-started-btn:hover {
+  background-image: linear-gradient(to right, rgb(111, 31, 168), rgb(98, 0, 163));
 }
 hr.my-4 {
   border-top: 1px solid rgb(220, 220, 220);
@@ -105,7 +105,7 @@ hr.my-4 {
 /* About */
 .about-container {
   font-family: 'Arial', sans-serif;
-  color: #333;
+  color: rgb(51, 51, 51);
 }
 
 .hero-section {
@@ -152,4 +152,21 @@ hr.my-4 {
   color: rgb(108, 117, 125);
   font-size: 1rem;
   margin-top: 5px;
+}
+
+.heading{
+  color:rgb(82,19,190);
+}
+
+.table-heading tr th{
+  color:rgb(82,19,190);
+  font-size: 18px; 
+}
+
+.dashboard-button{
+  background-image: linear-gradient(to right, rgb(145, 85, 248), rgb(121, 2, 190));
+  border: none;
+}
+.dashboard-button:hover{
+  background-image: linear-gradient(to right, rgb(111, 31, 168), rgb(98, 0, 163));
 }

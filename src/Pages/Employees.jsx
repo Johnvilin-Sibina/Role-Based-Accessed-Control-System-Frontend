@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { assignRole } from "../Redux/Slice/employeeSlice";
+import DashboardButton from "../Components/DashboardButton";
 
 const Employees = () => {
   const [employees, setEmployees] = useState([]);
@@ -49,11 +50,15 @@ const Employees = () => {
     fetchEmployees();
   }, [deleteEmployee]);
   return (
-    <>
-      <h1 className="text-center">Employees</h1>
-      <div className="table-responsive">
-        <table className="table text-center shadow">
-          <thead>
+    <div className="container">
+      <div className="row">
+        <div className="col mb-3">
+        <h1 className="text-center heading">Employees</h1>
+        </div>
+      </div>
+      <div className="table-responsive row">
+        <table className="table text-center shadow col">
+          <thead className="table-heading">
             <tr className="shadow">
               <th className="shadow">User Name</th>
               <th className="shadow">Email</th>
@@ -108,8 +113,9 @@ const Employees = () => {
             })}
           </tbody>
         </table>
+        <DashboardButton />
       </div>
-    </>
+    </div>
   );
 };
 

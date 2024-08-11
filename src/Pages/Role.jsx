@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { setRoleId } from '../Redux/Slice/roleSlice';
+import DashboardButton from '../Components/DashboardButton';
 const Role = () => {
     const [roles,setRoles] = useState([])
     const navigate = useNavigate()
@@ -56,11 +57,15 @@ const Role = () => {
       fetchData()
     },[deleteRole])
     return (
-        <>
-      <h1 className="text-center">Roles</h1>
-      <div className="table-responsive">
-        <table className="table text-center shadow">
-          <thead>
+        <div className="container">
+      <div className="row">
+        <div className="col mb-3">
+        <h1 className="text-center heading">Roles</h1>
+        </div>
+      </div>
+      <div className="table-responsive row">
+        <table className="table text-center shadow col">
+          <thead className='table-heading'>
             <tr className="shadow">
               <th className="shadow">Role</th>
               <th className="shadow">Responsibilities</th>
@@ -86,7 +91,8 @@ const Role = () => {
         </table>
       <div className='d-flex justify-content-center'><button className='btn btn-success' onClick={handleClick}>Create</button></div>
       </div>
-    </>
+      <DashboardButton />
+    </div>
     );
 };
 

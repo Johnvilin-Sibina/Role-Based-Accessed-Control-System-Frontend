@@ -1,18 +1,19 @@
 import React from "react";
 import { FiMenu } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <header
-      className="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow"
+      className="navbar sticky-top bg-dark flex-md-nowrap shadow p-2"
       data-bs-theme="dark"
     >
-      <a
+      <Link
         className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white"
-        href="#"
+        to="/"
       >
-        RBAC
-      </a>
+        TradePulse
+      </Link>
       <ul className="navbar-nav flex-row d-md-none">
         <li className="nav-item text-nowrap">
           <button

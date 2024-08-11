@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import DashboardButton from "../Components/DashboardButton";
 
 const CreateDepartment = () => {
   const [formData, setFormData] = useState({
@@ -36,6 +37,7 @@ const CreateDepartment = () => {
     }
   });
   return (
+    <>
     <div className="container d-flex flex-wrap justify-content-center mt-5 box">
       <div className="row">
         <div className="col">
@@ -80,6 +82,8 @@ const CreateDepartment = () => {
         </div>
       </div>
     </div>
+    <DashboardButton />
+    </>
   );
 };
 

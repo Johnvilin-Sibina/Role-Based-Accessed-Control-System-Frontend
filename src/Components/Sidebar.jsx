@@ -6,9 +6,17 @@ import { TbCircleLetterD } from "react-icons/tb";
 import { TbCircleLetterR } from "react-icons/tb";
 import "../App.css";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { signOut } from "../Redux/Slice/employeeSlice";
 
 const Sidebar = () => {
+  const dispatch = useDispatch()
+
+  //Function to perform sign out
+  const handleSignOut = ()=>{
+    dispatch(signOut());
+    localStorage.removeItem("Token")
+  }
   return (
     <div className="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
       <div
@@ -19,7 +27,7 @@ const Sidebar = () => {
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="sidebarMenuLabel">
-            Company name
+            TradePulse
           </h5>
           <button
             type="button"
@@ -95,9 +103,9 @@ const Sidebar = () => {
           <hr className="my-3" />
           <ul className="nav flex-column mb-auto">
             <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
+              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link" role="button" onClick={handleSignOut}>
                 <FaSignOutAlt />
-                Sign out
+                SignOut
               </Link>
             </li>
           </ul>

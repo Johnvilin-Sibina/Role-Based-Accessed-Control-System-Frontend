@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import DashboardButton from "../Components/DashboardButton";
 
 const RolePromotionReport = () => {
   const [reports, setReports] = useState([]);
@@ -25,10 +26,15 @@ const RolePromotionReport = () => {
   };
 
   return (
-    <div className="table-responsive">
-      <h1 className="text-center">Role Promotion Report</h1>
-      <table className="table text-center shadow">
-        <thead>
+    <div className="container">
+      <div className="row">
+        <div className="col mb-3">
+        <h1 className="text-center heading">Role Promotion Report</h1>
+        </div>
+      </div>
+    <div className="table-responsive row">
+      <table className="table text-center shadow col">
+        <thead  className="table-heading">
           <tr className="shadow">
             <th className="shadow">Employee</th>
             <th className="shadow">Old Role</th>
@@ -49,6 +55,8 @@ const RolePromotionReport = () => {
           ))}
         </tbody>
       </table>
+    </div>
+    <DashboardButton />
     </div>
   );
 };
