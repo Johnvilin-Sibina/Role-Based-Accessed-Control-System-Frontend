@@ -10,6 +10,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const [roles, setRoles] = useState([]);
 
+  //Fetching all the roles to display in the sign up form
   const fetchRoles = async () => {
     try {
       await axios
@@ -18,13 +19,14 @@ const Signup = () => {
           setRoles(res.data.result);
         });
     } catch (error) {
-      console.log(error);      
-    toast.error(error.response.data.message)
+      toast.error(error.response.data.message);
     }
   };
+
   useEffect(() => {
     fetchRoles();
   }, []);
+
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -32,6 +34,7 @@ const Signup = () => {
     role: "",
   });
 
+  //Formik validation schema to validate the form
   const validationSchema = Yup.object().shape({
     userName: Yup.string()
       .required("Username cannot be empty")
@@ -57,6 +60,7 @@ const Signup = () => {
     initialValues: formData,
     validationSchema: validationSchema,
 
+    //Function to submit the data collected from the form
     onSubmit: async (values) => {
       try {
         await axios

@@ -17,8 +17,9 @@ const Profile = () => {
     responsibilities: "",
     department: "",
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
+  //Function to fetch details of logged in employee
   const fetchData = async () => {
     try {
       await axios(
@@ -28,7 +29,6 @@ const Profile = () => {
         toast.success(res.data.message);
       });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     }
   };
@@ -36,6 +36,7 @@ const Profile = () => {
     fetchData();
   }, []);
 
+  //Formik Schema to validate form
   const validationSchema = Yup.object().shape({
     userName: Yup.string()
       .required("User Name Cannot be Empty")
@@ -59,6 +60,7 @@ const Profile = () => {
     initialValues: employee,
     validationSchema: validationSchema,
 
+    //Function to update the employee profile
     onSubmit: async (values) => {
       try {
         await axios
@@ -69,10 +71,9 @@ const Profile = () => {
           .then((res) => {
             setEmployee(res.data.result);
             toast.success(res.data.message);
-            navigate('/dashboard')
+            navigate("/dashboard");
           });
       } catch (error) {
-        console.log(error);
         toast.error(error.response.data.message);
       }
     },
@@ -150,7 +151,11 @@ const Profile = () => {
                     id="department"
                     name="department"
                     className="form-control"
-                    defaultValue={formik.values.department.departmentName}
+                    defaultValue={
+                      formik.values.department
+                        ? formik.values.department.departmentName
+                        : "Not Yet Assigned"
+                    }
                     readOnly
                   />
                 </div>

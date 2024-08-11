@@ -7,18 +7,15 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
   const [resdata, setResData] = useState([]);
-  const [departments, setDepartments] = useState([]);
   const [employees, setEmployees] = useState([]);
-  const [roles, setRoles] = useState([]);
   const { currentUser } = useSelector((state) => state.employee);
 
   useEffect(() => {
     fetchData();
     fetchEmployees();
-    fetchRoles();
-    fetchDepartments();
   }, []);
 
+  //Function to get the details of the logged in user
   const fetchData = async () => {
     await axios
       .get("http://localhost:5000/api/get-emp", {
@@ -32,42 +29,17 @@ const Dashboard = () => {
         toast.success(res.data.message);
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.response.data.message);
       });
   };
 
-  const fetchDepartments = async () => {
-    try {
-      await axios
-        .get("http://localhost:5000/api/department/get-departments")
-        .then((res) => {
-          setDepartments(res.data.result);
-        });
-    } catch (error) {
-      console.log(error);
-      toast.error(error.response.data.message);
-    }
-  };
+  //Function to fetch the data of all the registered employees
   const fetchEmployees = async () => {
     try {
       await axios.get("http://localhost:5000/api/get-all-emp").then((res) => {
         setEmployees(res.data.result);
       });
     } catch (error) {
-      toast.error(error.response.data.message);
-    }
-  };
-
-  const fetchRoles = async () => {
-    try {
-      await axios
-        .get("http://localhost:5000/api/role/get-roles")
-        .then((res) => {
-          setRoles(res.data.result);
-        });
-    } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     }
   };

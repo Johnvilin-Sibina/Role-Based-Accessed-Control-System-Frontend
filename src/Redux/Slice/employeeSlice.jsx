@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentUser: null,
-  Id:null
+  Id: null,
 };
 
 const employeeSlice = createSlice({
@@ -14,22 +14,27 @@ const employeeSlice = createSlice({
     },
     signInSuccess: (state, action) => {
       state.loading = false;
-      state.currentUser =  action.payload
+      state.currentUser = action.payload;
     },
     signInFailure: (state, action) => {
       state.loading = false;
     },
-    assignRole:(state,action)=>{
-      state.Id = action.payload
+    assignRole: (state, action) => {
+      state.Id = action.payload;
     },
-    signOut:(state)=>{
-      state.currentUser=null
-      state.Id=null
-    }
+    signOut: (state) => {
+      state.currentUser = null;
+      state.Id = null;
+    },
   },
 });
 
-export const { signInStart, signInSuccess, signInFailure, assignRole, signOut } =
-  employeeSlice.actions;
+export const {
+  signInStart,
+  signInSuccess,
+  signInFailure,
+  assignRole,
+  signOut,
+} = employeeSlice.actions;
 
 export default employeeSlice.reducer;

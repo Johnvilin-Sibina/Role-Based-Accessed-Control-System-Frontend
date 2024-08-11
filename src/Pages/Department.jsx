@@ -18,6 +18,7 @@ const Department = () => {
     fetchData();
   }, []);
 
+  //Function to fetch all the departments
   const fetchData = async () => {
     try {
       await axios
@@ -27,7 +28,6 @@ const Department = () => {
           setDepartments(res.data.result);
         });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     }
   };
@@ -37,6 +37,7 @@ const Department = () => {
     navigate("/createdepartment");
   };
 
+  //Function to dispatch the id of the department that is to be edited
   const handleEdit = (id) => {
     dispatch(setDepartmentId(id));
     navigate(`/editdepartment/${departmentId}`);
@@ -55,7 +56,6 @@ const Department = () => {
           setDeleteDepartment(res.data);
         });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     }
   };

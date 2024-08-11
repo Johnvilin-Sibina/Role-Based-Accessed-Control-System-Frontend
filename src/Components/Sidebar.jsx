@@ -4,19 +4,20 @@ import { FaSignOutAlt } from "react-icons/fa";
 import { FaUsersGear } from "react-icons/fa6";
 import { TbCircleLetterD } from "react-icons/tb";
 import { TbCircleLetterR } from "react-icons/tb";
+import { IoDocumentsSharp } from "react-icons/io5";
 import "../App.css";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signOut } from "../Redux/Slice/employeeSlice";
 
 const Sidebar = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   //Function to perform sign out
-  const handleSignOut = ()=>{
+  const handleSignOut = () => {
     dispatch(signOut());
-    localStorage.removeItem("Token")
-  }
+    localStorage.removeItem("Token");
+  };
   return (
     <div className="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
       <div
@@ -40,7 +41,10 @@ const Sidebar = () => {
         <div className="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul className="nav flex-column">
             <li className="nav-item">
-              <Link to='/' className="nav-link d-flex align-items-center gap-2 sidebar-link">
+              <Link
+                to="/"
+                className="nav-link d-flex align-items-center gap-2 sidebar-link"
+              >
                 <FaHome />
                 Home
               </Link>
@@ -59,7 +63,7 @@ const Sidebar = () => {
                 to="/getdepartments"
                 className="nav-link d-flex align-items-center gap-2 sidebar-link"
               >
-                <TbCircleLetterD size="23"/>
+                <TbCircleLetterD size="23" />
                 Departments
               </Link>
             </li>
@@ -68,7 +72,7 @@ const Sidebar = () => {
                 to="/getroles"
                 className="nav-link d-flex align-items-center gap-2 sidebar-link"
               >
-                <TbCircleLetterR size="23"/>
+                <TbCircleLetterR size="23" />
                 Roles
               </Link>
             </li>
@@ -86,7 +90,7 @@ const Sidebar = () => {
                 to="/rolepromotionreport"
                 className="nav-link d-flex align-items-center gap-2 sidebar-link"
               >
-                <FaUserAlt size={15} />
+                <IoDocumentsSharp size={15} />
                 Promotion Report
               </Link>
             </li>
@@ -95,7 +99,7 @@ const Sidebar = () => {
                 to="/workperiodreport"
                 className="nav-link d-flex align-items-center gap-2 sidebar-link"
               >
-                <FaUserAlt size={15} />
+                <IoDocumentsSharp size={15} />
                 Work Period Report
               </Link>
             </li>
@@ -103,7 +107,11 @@ const Sidebar = () => {
           <hr className="my-3" />
           <ul className="nav flex-column mb-auto">
             <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link" role="button" onClick={handleSignOut}>
+              <Link
+                className="nav-link d-flex align-items-center gap-2 sidebar-link"
+                role="button"
+                onClick={handleSignOut}
+              >
                 <FaSignOutAlt />
                 SignOut
               </Link>

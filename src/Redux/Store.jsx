@@ -1,41 +1,30 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import employeeReducer from './Slice/employeeSlice';
+import employeeReducer from "./Slice/employeeSlice";
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/es/persistReducer";
 import persistStore from "redux-persist/es/persistStore";
-import departmentReducer from './Slice/departmentSlice'
-import roleReducer from './Slice/roleSlice'
+import departmentReducer from "./Slice/departmentSlice";
+import roleReducer from "./Slice/roleSlice";
 
 const rootReducer = combineReducers({
-    employee:employeeReducer,
-    department:departmentReducer,
-    role:roleReducer
-})
+  employee: employeeReducer,
+  department: departmentReducer,
+  role: roleReducer,
+});
 
 const persistConfig = {
-    key:'root',
-    storage,
-    version:1
-}
+  key: "root",
+  storage,
+  version: 1,
+};
 
-const persistedReducer = persistReducer(persistConfig,rootReducer)
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-    reducer:persistedReducer,
-    middleware:(getDefaultMiddleware)=>{
-        return getDefaultMiddleware({serializableCheck:false})
-    }
-})
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) => {
+    return getDefaultMiddleware({ serializableCheck: false });
+  },
+});
 
-export const persistor = persistStore(store)
-
-
-// import { configureStore } from "@reduxjs/toolkit";
-// import employeeReducer from './Slice/employeeSlice'
-
-
-// export const store = configureStore({
-//     reducer:{
-//         employee:employeeReducer
-//     }
-// })
+export const persistor = persistStore(store);

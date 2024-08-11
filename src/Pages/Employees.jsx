@@ -12,6 +12,7 @@ const Employees = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [deleteEmployee, setDeleteEmployee] = useState([]);
+
   //Function to fetch all the employees
   const fetchEmployees = async () => {
     try {
@@ -27,6 +28,7 @@ const Employees = () => {
     fetchEmployees();
   }, []);
 
+  //Function to dispatch the id of the employee
   const handleAssignRole = (id) => {
     dispatch(assignRole(id));
     navigate(`/assignrole/${Id}`);
@@ -42,7 +44,6 @@ const Employees = () => {
           setDeleteEmployee(res.data);
         });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     }
   };
@@ -53,7 +54,7 @@ const Employees = () => {
     <div className="container">
       <div className="row">
         <div className="col mb-3">
-        <h1 className="text-center heading">Employees</h1>
+          <h1 className="text-center heading">Employees</h1>
         </div>
       </div>
       <div className="table-responsive row">
@@ -79,8 +80,14 @@ const Employees = () => {
                   <td className="shadow">
                     {employee.dateOfJoining.slice(0, 10)}
                   </td>
-                  <td className="shadow">{employee.role ? employee.role.role : 'Not Yet Assigned'}</td>
-                  <td className="shadow">{employee.department ? employee.department.departmentName : 'Not Yet Assigned'}</td>
+                  <td className="shadow">
+                    {employee.role ? employee.role.role : "Not Yet Assigned"}
+                  </td>
+                  <td className="shadow">
+                    {employee.department
+                      ? employee.department.departmentName
+                      : "Not Yet Assigned"}
+                  </td>
                   {employee.role ? (
                     <td className="shadow">
                       <button

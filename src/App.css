@@ -1,60 +1,69 @@
 /* Navbar */
-.navbar-collapse{
+.navbar-collapse {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
   align-items: flex-end;
 }
-.navbar{
-  background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
-}
-.navbar-nav{
-  font-size: 20px;
-}
-.navbar-brand{
-  font-size: 24px;
-}
-.button{
-  background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
-}
-.signup{ 
-  font-weight: 700;
-  color: rgb(82,19,190);
-}
-.form-label{
-  color: rgb(84,13,235);
-  font-weight: 500;
-}
-.signin{ 
-  font-weight: 700;
-  color: rgb(82,19,190);
+
+.navbar {
+  background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239), rgb(79, 34, 84));
 }
 
-.box{
-  border: 3px solid rgb(82,19,190);
+.navbar-nav {
+  font-size: 20px;
+}
+
+.navbar-brand {
+  font-size: 24px;
+}
+
+.button {
+  background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239), rgb(79, 34, 84));
+}
+
+.signup {
+  font-weight: 700;
+  color: rgb(82, 19, 190);
+}
+
+.form-label {
+  color: rgb(84, 13, 235);
+  font-weight: 500;
+}
+
+.signin {
+  font-weight: 700;
+  color: rgb(82, 19, 190);
+}
+
+.box {
+  border: 3px solid rgb(82, 19, 190);
   width: 40vw;
   padding: 20px;
   border-radius: 15px;
 }
-.sidebar{
+
+.sidebar {
   height: 100vh;
 }
-.sidebar-link{
+
+.sidebar-link {
   color: blueviolet !important;
   font-size: 18px;
 }
-.formik-error{
+
+.formik-error {
   font-size: 18px;
-  color:red;
-}
-legend{
-  color: rgb(82,19,190);
-  font-weight:500;
-  font-size:xx-large;
-  font-family:Georgia, Times, 'Times New Roman', serif
+  color: red;
 }
 
-
+legend {
+  color: rgb(82, 19, 190);
+  font-weight: 500;
+  font-size: xx-large;
+  font-family: Georgia, Times, 'Times New Roman', serif
+}
 
 .home {
   padding: 2rem;
@@ -77,13 +86,14 @@ legend{
 }
 
 .get-started-btn {
-  background-image: linear-gradient(to right, rgb(164, 115, 243), rgb(156, 23, 151)); 
-  border:none;
+  background-image: linear-gradient(to right, rgb(164, 115, 243), rgb(156, 23, 151));
+  border: none;
 }
 
 .get-started-btn:hover {
   background-image: linear-gradient(to right, rgb(111, 31, 168), rgb(98, 0, 163));
 }
+
 hr.my-4 {
   border-top: 1px solid rgb(220, 220, 220);
 }
@@ -92,13 +102,15 @@ hr.my-4 {
   .display-3 {
     font-size: 2.5rem;
   }
+
   .lead {
     font-size: 1.1rem;
   }
 }
+
 /*Footer*/
-.copy-write{
-  color:rgb(84, 13, 239) !important;
+.copy-write {
+  color: rgb(84, 13, 239) !important;
   font-size: 20px;
 }
 
@@ -109,7 +121,7 @@ hr.my-4 {
 }
 
 .hero-section {
-   padding: 60px 0;
+  padding: 60px 0;
 }
 
 .hero-section h1 {
@@ -122,7 +134,7 @@ hr.my-4 {
 }
 
 .about-content h2 {
-  color:rgb(111, 66, 193); 
+  color: rgb(111, 66, 193);
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -154,19 +166,20 @@ hr.my-4 {
   margin-top: 5px;
 }
 
-.heading{
-  color:rgb(82,19,190);
+.heading {
+  color: rgb(82, 19, 190);
 }
 
-.table-heading tr th{
-  color:rgb(82,19,190);
-  font-size: 18px; 
+.table-heading tr th {
+  color: rgb(82, 19, 190);
+  font-size: 18px;
 }
 
-.dashboard-button{
+.dashboard-button {
   background-image: linear-gradient(to right, rgb(145, 85, 248), rgb(121, 2, 190));
   border: none;
 }
-.dashboard-button:hover{
+
+.dashboard-button:hover {
   background-image: linear-gradient(to right, rgb(111, 31, 168), rgb(98, 0, 163));
 }

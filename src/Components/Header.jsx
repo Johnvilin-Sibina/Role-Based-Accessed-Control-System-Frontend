@@ -31,18 +31,18 @@ const Header = () => {
           </button>
         </li>
         <li className="nav-item text-nowrap">
-            <button
-              className="nav-link px-3 text-white"
-              type="button"
-              data-bs-toggle="offcanvas"
-              data-bs-target="#sidebarMenu"
-              aria-controls="sidebarMenu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-             <FiMenu />
-            </button>
-          </li>
+          <button
+            className="nav-link px-3 text-white"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#sidebarMenu"
+            aria-controls="sidebarMenu"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <FiMenu />
+          </button>
+        </li>
       </ul>
       <div id="navbarSearch" className="navbar-search w-100 collapse">
         <input

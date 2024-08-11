@@ -26,13 +26,13 @@ const Navbar = () => {
             </Link>
             <Link to="/about" className="nav-link">
               About
-            </Link>          
+            </Link>
             <Link to="/signin" className="nav-link">
               SignIn
             </Link>
-            </div>
           </div>
         </div>
+      </div>
     </nav>
   );
 };

@@ -8,13 +8,14 @@ import * as Yup from "yup";
 import DashboardButton from "../Components/DashboardButton";
 
 const EditDepartment = () => {
-  
   const navigate = useNavigate();
-  const {departmentId} = useSelector((state)=>state.department)
+  const { departmentId } = useSelector((state) => state.department);
   const [editDepartment, setEditDepartment] = useState({
     departmentName: "",
     description: "",
   });
+
+  //Formik schema to validate form
   const validationSchema = Yup.object().shape({
     departmentName: Yup.string()
       .required("Department Name Cannot be Empty")
@@ -24,40 +25,48 @@ const EditDepartment = () => {
       .matches(/^[a-zA-Z][a-zA-Z ]*$/, "Only Alphabet and Space is Allowed"),
   });
 
+  //Function the fetch the department to edit
   const fetchData = async () => {
     try {
-      await axios.get(`http://localhost:5000/api/department/get-department-by-id/${departmentId}`).then((res) => {
-        toast.success(res.data.message);
-        setEditDepartment(res.data.result);
-      });
+      await axios
+        .get(
+          `http://localhost:5000/api/department/get-department-by-id/${departmentId}`
+        )
+        .then((res) => {
+          toast.success(res.data.message);
+          setEditDepartment(res.data.result);
+        });
     } catch (error) {
-      console.log(error);
       toast.error(error.response.data.message);
     }
   };
 
-  useEffect(()=>{
-    fetchData()
-  },[])
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-  useEffect(()=>{
-    formik.setValues(editDepartment)
-  },[editDepartment])
+  useEffect(() => {
+    formik.setValues(editDepartment);
+  }, [editDepartment]);
 
   const formik = useFormik({
     initialValues: editDepartment,
     validationSchema: validationSchema,
 
+    //Function to updated to edited department details
     onSubmit: async (values) => {
       try {
-        await axios.put(`http://localhost:5000/api/department/edit-department/${departmentId}`, values)
-        .then((res) => {
-          setEditDepartment(res.data.result);
-          toast.success(res.data.message);
-          navigate("/getdepartments");
-        });
+        await axios
+          .put(
+            `http://localhost:5000/api/department/edit-department/${departmentId}`,
+            values
+          )
+          .then((res) => {
+            setEditDepartment(res.data.result);
+            toast.success(res.data.message);
+            navigate("/getdepartments");
+          });
       } catch (error) {
-        console.log(error);
         toast.error(error.response.data.message);
       }
     },
@@ -65,53 +74,53 @@ const EditDepartment = () => {
   return (
     editDepartment && (
       <>
-      <div className="container d-flex flex-wrap justify-content-center mt-5 box">
-        <div className="row">
-          <div className="col">
-            <form onSubmit={formik.handleSubmit}>
-              <fieldset>
-                <legend className="text-center">Create Department</legend>
-                <div className="mb-3">
-                  <label htmlFor="departmentName" className="form-label">
-                    Department Name
-                  </label>
-                  <input
-                    type="text"
-                    id="departmentName"
-                    className="form-control"
-                    placeholder="Enter the Department Name"
-                    value={formik.values.departmentName}
-                    onChange={formik.handleChange}
-                  />
-                </div>
-                <p className="formik-error">{formik.errors.departmentName}</p>
-                <div className="mb-3">
-                  <label htmlFor="description" className="form-label">
-                    Description
-                  </label>
-                  <textarea
-                    rows="5"
-                    cols="30"
-                    name="description"
-                    id="description"
-                    className="form-control"
-                    placeholder="Enter the Department Description"
-                    value={formik.values.description}
-                    onChange={formik.handleChange}
-                  ></textarea>
-                </div>
-                <p className="formik-error">{formik.errors.description}</p>
-                <div className="mb-3">
-                  <button type="submit" className="btn btn-success">
-                    Update
-                  </button>
-                </div>
-              </fieldset>
-            </form>
+        <div className="container d-flex flex-wrap justify-content-center mt-5 box">
+          <div className="row">
+            <div className="col">
+              <form onSubmit={formik.handleSubmit}>
+                <fieldset>
+                  <legend className="text-center">Create Department</legend>
+                  <div className="mb-3">
+                    <label htmlFor="departmentName" className="form-label">
+                      Department Name
+                    </label>
+                    <input
+                      type="text"
+                      id="departmentName"
+                      className="form-control"
+                      placeholder="Enter the Department Name"
+                      value={formik.values.departmentName}
+                      onChange={formik.handleChange}
+                    />
+                  </div>
+                  <p className="formik-error">{formik.errors.departmentName}</p>
+                  <div className="mb-3">
+                    <label htmlFor="description" className="form-label">
+                      Description
+                    </label>
+                    <textarea
+                      rows="5"
+                      cols="30"
+                      name="description"
+                      id="description"
+                      className="form-control"
+                      placeholder="Enter the Department Description"
+                      value={formik.values.description}
+                      onChange={formik.handleChange}
+                    ></textarea>
+                  </div>
+                  <p className="formik-error">{formik.errors.description}</p>
+                  <div className="mb-3">
+                    <button type="submit" className="btn btn-success">
+                      Update
+                    </button>
+                  </div>
+                </fieldset>
+              </form>
+            </div>
           </div>
         </div>
-      </div>
-      <DashboardButton />
+        <DashboardButton />
       </>
     )
   );
