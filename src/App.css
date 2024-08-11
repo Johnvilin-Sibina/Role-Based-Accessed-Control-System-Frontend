@@ -1,3 +1,4 @@
+/* Navbar */
 .navbar-collapse{
   display: flex;
   flex-wrap: wrap;
@@ -6,6 +7,12 @@
 }
 .navbar{
   background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
+}
+.navbar-nav{
+  font-size: 20px;
+}
+.navbar-brand{
+  font-size: 24px;
 }
 .button{
   background-image: radial-gradient(circle at bottom center, rgb(84, 13, 239),rgb(79, 34, 84));
@@ -22,6 +29,7 @@
   font-weight: 700;
   color: rgb(82,19,190);
 }
+
 .box{
   border: 3px solid rgb(82,19,190);
   width: 40vw;
@@ -88,9 +96,60 @@ hr.my-4 {
     font-size: 1.1rem;
   }
 }
-
+/*Footer*/
 .copy-write{
   color:rgb(84, 13, 239) !important;
   font-size: 20px;
 }
 
+/* About */
+.about-container {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+}
+
+.hero-section {
+   padding: 60px 0;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.hero-section p {
+  font-size: 1.25rem;
+}
+
+.about-content h2 {
+  color:rgb(111, 66, 193); 
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.team-section {
+  background-color: rgb(248, 249, 250);
+  padding: 60px 0;
+}
+
+.team-member {
+  margin-bottom: 30px;
+}
+
+.team-member img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.team-member h5 {
+  color: rgb(111, 66, 193);
+  font-size: 1.25rem;
+  margin-top: 10px;
+}
+
+.team-member p {
+  color: rgb(108, 117, 125);
+  font-size: 1rem;
+  margin-top: 5px;
+}

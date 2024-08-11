@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-md" data-bs-theme="dark">
       <div className="container-fluid">
-        <Link to='/' className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           TradePulse
         </Link>
         <button
@@ -21,21 +21,18 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <Link to='/' className="nav-link">
+            <Link to="/" className="nav-link">
               Home
             </Link>
-            <Link to='/signup' className="nav-link">
-              SignUp
-            </Link>
-            <Link to='/signin' className="nav-link">
+            <Link to="/about" className="nav-link">
+              About
+            </Link>          
+            <Link to="/signin" className="nav-link">
               SignIn
             </Link>
-            <Link to='/dashboard' className="nav-link">
-              Dashboard
-            </Link>
+            </div>
           </div>
         </div>
-      </div>
     </nav>
   );
 };

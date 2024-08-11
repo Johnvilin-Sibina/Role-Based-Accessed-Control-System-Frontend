@@ -78,6 +78,7 @@ import EditRole from './Pages/EditRole';
 import RolePromotionReport from './Pages/RolePromotionReport';
 import WorkPeriodReport from './Pages/WorkPeriodReport';
 import Footer from './Components/Footer';
+import About from './Pages/About';
 
 const App = () => {
   return (
@@ -88,6 +89,7 @@ const App = () => {
           <Route path='/' element={<Home />} />
           <Route path='/signup' element={<Signup />} />
           <Route path='/signin' element={<Signin />} />
+          <Route path='/about' element={<About />} />
           <Route element={<ProtectedRoute />}>
             <Route path='/dashboard' element={<Dashboard />} />
           </Route>

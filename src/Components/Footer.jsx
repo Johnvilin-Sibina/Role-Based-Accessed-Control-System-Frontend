@@ -25,7 +25,7 @@ const Footer = () => {
             </Link>
           </li>
         </ul>
-        <p className="text-center text-body-secondary copy-write">© {new Date().getFullYear()} Company, Inc</p>
+        <p className="text-center text-body-secondary copy-write">© {new Date().getFullYear()} Johnvilin Sibina</p>
       </footer>
     </div>
   );
