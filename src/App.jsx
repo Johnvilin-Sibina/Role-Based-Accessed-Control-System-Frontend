@@ -77,6 +77,7 @@ import Role from './Pages/Role';
 import EditRole from './Pages/EditRole';
 import RolePromotionReport from './Pages/RolePromotionReport';
 import WorkPeriodReport from './Pages/WorkPeriodReport';
+import Footer from './Components/Footer';
 
 const App = () => {
   return (
@@ -106,6 +107,7 @@ const App = () => {
           <Route path='/forgotpw' element={<ForgotPassword />} />
           <Route path='/resetpw/:id/:token' element={<ResetPassword />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );

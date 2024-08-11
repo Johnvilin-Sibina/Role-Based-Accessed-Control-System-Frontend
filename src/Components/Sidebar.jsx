@@ -1,7 +1,6 @@
 import React from "react";
 import { FaHome, FaUserAlt } from "react-icons/fa";
 import { FaSignOutAlt } from "react-icons/fa";
-import { HiSpeakerphone } from "react-icons/hi";
 import { FaUsersGear } from "react-icons/fa6";
 import { TbCircleLetterD } from "react-icons/tb";
 import { TbCircleLetterR } from "react-icons/tb";
@@ -10,7 +9,6 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const Sidebar = () => {
-  const {currentUser} = useSelector((state)=>state.employee)
   return (
     <div className="sidebar border border-right col-md-3 col-lg-2 p-0 bg-body-tertiary">
       <div
@@ -39,12 +37,6 @@ const Sidebar = () => {
                 Home
               </Link>
             </li>
-            {/* <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
-                <HiSpeakerphone />
-                Anouncements
-              </Link>
-            </li> */}
             <li className="nav-item">
               <Link
                 to="/employees"
@@ -102,9 +94,6 @@ const Sidebar = () => {
           </ul>
           <hr className="my-3" />
           <ul className="nav flex-column mb-auto">
-            <li className="nav-item">
-              <Link className="nav-link d-flex align-items-center gap-2 sidebar-link"></Link>
-            </li>
             <li className="nav-item">
               <Link className="nav-link d-flex align-items-center gap-2 sidebar-link">
                 <FaSignOutAlt />
