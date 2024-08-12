@@ -18,7 +18,7 @@ const Dashboard = () => {
   //Function to get the details of the logged in user
   const fetchData = async () => {
     await axios
-      .get("http://localhost:5000/api/get-emp", {
+      .get("https://role-based-access-control-system-backend.onrender.com/api/get-emp", {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${currentUser.token}`,
@@ -36,7 +36,7 @@ const Dashboard = () => {
   //Function to fetch the data of all the registered employees
   const fetchEmployees = async () => {
     try {
-      await axios.get("http://localhost:5000/api/get-all-emp").then((res) => {
+      await axios.get("https://role-based-access-control-system-backend.onrender.com/api/get-all-emp").then((res) => {
         setEmployees(res.data.result);
       });
     } catch (error) {

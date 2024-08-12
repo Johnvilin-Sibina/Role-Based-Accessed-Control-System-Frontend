@@ -16,7 +16,7 @@ const Employees = () => {
   //Function to fetch all the employees
   const fetchEmployees = async () => {
     try {
-      await axios.get("http://localhost:5000/api/get-all-emp").then((res) => {
+      await axios.get("https://role-based-access-control-system-backend.onrender.com/api/get-all-emp").then((res) => {
         toast.success(res.data.message);
         setEmployees(res.data.result);
       });
@@ -38,7 +38,7 @@ const Employees = () => {
   const handleDelete = async (id) => {
     try {
       await axios
-        .delete(`http://localhost:5000/api/delete-employee/${id}`)
+        .delete(`https://role-based-access-control-system-backend.onrender.com/api/delete-employee/${id}`)
         .then((res) => {
           toast.success(res.data.message);
           setDeleteEmployee(res.data);

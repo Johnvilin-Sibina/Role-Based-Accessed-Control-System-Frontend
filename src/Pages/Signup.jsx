@@ -14,7 +14,7 @@ const Signup = () => {
   const fetchRoles = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/role/get-roles")
+        .get("https://role-based-access-control-system-backend.onrender.com/api/role/get-roles")
         .then((res) => {
           setRoles(res.data.result);
         });
@@ -64,7 +64,7 @@ const Signup = () => {
     onSubmit: async (values) => {
       try {
         await axios
-          .post("http://localhost:5000/api/register-emp", values)
+          .post("https://role-based-access-control-system-backend.onrender.com/api/register-emp", values)
           .then((res) => {
             setFormData(res.data);
             toast.success(res.data.message);

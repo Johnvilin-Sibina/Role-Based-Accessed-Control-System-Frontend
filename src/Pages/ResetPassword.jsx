@@ -17,7 +17,7 @@ const ResetPassword = () => {
     try {
       await axios
         .post(
-          `http://localhost:5000/api/reset-password/${id}/${token}`,
+          `https://role-based-access-control-system-backend.onrender.com/api/reset-password/${id}/${token}`,
           payload
         )
         .then((res) => {

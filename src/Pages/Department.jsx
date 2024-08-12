@@ -22,7 +22,7 @@ const Department = () => {
   const fetchData = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/department/get-departments")
+        .get("https://role-based-access-control-system-backend.onrender.com/api/department/get-departments")
         .then((res) => {
           toast.success(res.data.message);
           setDepartments(res.data.result);
@@ -49,7 +49,7 @@ const Department = () => {
       dispatch(setDepartmentId(id));
       await axios
         .delete(
-          `http://localhost:5000/api/department/delete-department/${departmentId}`
+          `https://role-based-access-control-system-backend.onrender.com/api/department/delete-department/${departmentId}`
         )
         .then((res) => {
           toast.success(res.data.message);

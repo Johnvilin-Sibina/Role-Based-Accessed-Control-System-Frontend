@@ -23,7 +23,7 @@ const Profile = () => {
   const fetchData = async () => {
     try {
       await axios(
-        `http://localhost:5000/api/get-employee-by-id/${currentUser._id}`
+        `https://role-based-access-control-system-backend.onrender.com/api/get-employee-by-id/${currentUser._id}`
       ).then((res) => {
         setEmployee(res.data.result);
         toast.success(res.data.message);
@@ -65,7 +65,7 @@ const Profile = () => {
       try {
         await axios
           .put(
-            `http://localhost:5000/api/update-employee/${currentUser._id}`,
+            `https://role-based-access-control-system-backend.onrender.com/api/update-employee/${currentUser._id}`,
             values
           )
           .then((res) => {

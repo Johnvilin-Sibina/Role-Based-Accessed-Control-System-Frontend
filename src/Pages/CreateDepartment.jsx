@@ -32,7 +32,7 @@ const CreateDepartment = () => {
       try {
         await axios
           .post(
-            "http://localhost:5000/api/department/create-department",
+            "https://role-based-access-control-system-backend.onrender.com/api/department/create-department",
             values
           )
           .then((res) => {

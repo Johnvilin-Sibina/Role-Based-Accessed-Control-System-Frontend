@@ -13,7 +13,7 @@ const DashboardButton = () => {
         className="btn btn-primary btn-lg dashboard-button"
         onClick={handleClick}
       >
-        Dashboard
+       Back To Dashboard
       </button>
     </div>
   );

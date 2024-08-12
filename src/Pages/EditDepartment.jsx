@@ -30,7 +30,7 @@ const EditDepartment = () => {
     try {
       await axios
         .get(
-          `http://localhost:5000/api/department/get-department-by-id/${departmentId}`
+          `https://role-based-access-control-system-backend.onrender.com/api/department/get-department-by-id/${departmentId}`
         )
         .then((res) => {
           toast.success(res.data.message);
@@ -58,7 +58,7 @@ const EditDepartment = () => {
       try {
         await axios
           .put(
-            `http://localhost:5000/api/department/edit-department/${departmentId}`,
+            `https://role-based-access-control-system-backend.onrender.com/api/department/edit-department/${departmentId}`,
             values
           )
           .then((res) => {

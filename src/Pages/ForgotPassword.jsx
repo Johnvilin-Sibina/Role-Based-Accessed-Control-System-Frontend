@@ -13,7 +13,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     try {
       await axios
-        .post("http://localhost:5000/api/forgot-password", { email })
+        .post("https://role-based-access-control-system-backend.onrender.com/api/forgot-password", { email })
         .then((res) => {
           toast.success(res.data.message);
           navigate("/signin");

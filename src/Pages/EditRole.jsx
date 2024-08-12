@@ -29,7 +29,7 @@ const EditRole = () => {
   const fetchData = async () => {
     try {
       await axios
-        .get(`http://localhost:5000/api/role/get-role-by-id/${roleId}`)
+        .get(`https://role-based-access-control-system-backend.onrender.com/api/role/get-role-by-id/${roleId}`)
         .then((res) => {
           toast.success(res.data.message);
           setEditRole(res.data.result);
@@ -55,7 +55,7 @@ const EditRole = () => {
     onSubmit: async (values) => {
       try {
         await axios
-          .put(`http://localhost:5000/api/role/edit-role/${roleId}`, values)
+          .put(`https://role-based-access-control-system-backend.onrender.com/api/role/edit-role/${roleId}`, values)
           .then((res) => {
             setEditRole(res.data.result);
             toast.success(res.data.message);

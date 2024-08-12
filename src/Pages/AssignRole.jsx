@@ -35,7 +35,7 @@ const AssignRole = () => {
   const fetchData = async () => {
     try {
       await axios
-        .get(`http://localhost:5000/api/employee-assign-role/${Id}`)
+        .get(`https://role-based-access-control-system-backend.onrender.com/api/employee-assign-role/${Id}`)
         .then((res) => {
           setAssignRole({
             ...res.data.result, //spread the data fetched
@@ -55,7 +55,7 @@ const AssignRole = () => {
   const fetchDepartment = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/department/get-departments")
+        .get("https://role-based-access-control-system-backend.onrender.com/api/department/get-departments")
         .then((res) => {
           setDepartments(res.data.result);
         });
@@ -68,7 +68,7 @@ const AssignRole = () => {
   const fetchRoles = async () => {
     try {
       await axios
-        .get("http://localhost:5000/api/role/get-roles")
+        .get("https://role-based-access-control-system-backend.onrender.com/api/role/get-roles")
         .then((res) => {
           setRoles(res.data.result);
         });
@@ -85,7 +85,7 @@ const AssignRole = () => {
     onSubmit: async (values) => {
       try {
         await axios
-          .put(`http://localhost:5000/api/assign-role/${Id}`, values)
+          .put(`https://role-based-access-control-system-backend.onrender.com/api/assign-role/${Id}`, values)
           .then((res) => {
             toast.success(res.data.message);
             setAssignRole(res.data.result);
